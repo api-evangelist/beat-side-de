@@ -1,0 +1,20 @@
+generated: '2026-09-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: agentworld.beat-side.de
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 26 05:54:33 2026 GMT
+  hsts: false
+- host: agentworld-api.beat-side.de
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 26 05:54:33 2026 GMT
+  hsts: false
+domains:
+- domain: beat-side.de
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false

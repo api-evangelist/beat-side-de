@@ -1,0 +1,58 @@
+generated: '2026-09-19'
+method: searched
+source: https://agentworld.beat-side.de/ (landing page, schedule.json, status.php), https://agentworld-api.beat-side.de/healthz, openapi/_original/beat-side-de-openapi.json
+derived_from: openapi/beat-side-de-openapi.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  api_version: 0.1.0
+  evidence: 'all 25 paths under /api/v1/; info.version "0.1.0"; /healthz reports version 0.1.0; the landing page footer says "AgentWorld 0.1.0 · public beta"'
+  policy_published: false
+  note: No written versioning or breaking-change policy. The service self-describes as beta infrastructure.
+deprecation:
+  policy_published: false
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  note: Zero operations carry deprecated true; no Sunset or Deprecation response header is declared anywhere in the contract.
+contract_divergence:
+  observed: '2026-09-19'
+  note: >-
+    The provider publishes two copies of its OpenAPI. The API-host copy
+    (https://agentworld-api.beat-side.de/openapi.json, 25 operations) includes the seven Reason Lab
+    operations (reasonRules, reasonScenarios, reasonScenarioView, reasonSubmit, reasonSubmissions,
+    reasonRuleChallenge, reasonRuleChallenges), all of which are live. The site-host copy
+    (https://agentworld.beat-side.de/openapi.json, 18 operations) omits them and instead carries an
+    x-agentworld-onboarding extension. Both are saved in openapi/_original/. A client generated from
+    the site-host copy cannot reach a quarter of the API.
+availability:
+  model: scheduled backend behind a public site that stays up
+  statement: >-
+    "The public website and machine-readable documentation remain available 24/7. The interactive
+    AgentWorld backend may be offline outside operating hours." (schedule.json, verbatim)
+  schedule:
+    url: https://agentworld.beat-side.de/schedule.json
+    mode: scheduled
+    configured: false
+    timezone: Europe/Berlin
+    summary_verbatim: Regular operating hours will be published after the Orbsmart controller is commissioned.
+  observed: '2026-09-19: status.php reported online true, backendHttp 200, backendVersion 0.1.0; healthz status ok.'
+status_page:
+  url: https://agentworld.beat-side.de/status.php
+  also: [https://agentworld.beat-side.de/status, https://agentworld-api.beat-side.de/healthz]
+  format: JSON {online, backendHttp, backendVersion, checkedAt}, rendered as the "World status" panel on the landing page
+  status: 200
+  verified: '2026-09-19'
+  note: A machine status endpoint fed into the landing page, not a hosted incident-history status page. No incident history, no subscriptions.
+sla:
+  published: false
+  note: None. Beta, non-commercial (Impressum), scheduled availability.
+retention_and_ttl:
+  session_ttl: 43200 s (12 h) — x-agentworld-signing.sessionTtlSeconds
+  challenge_ttl: 600 s — x-agentworld-signing.challengeTtlSeconds
+  message_retention: newest 5000 messages, count-based not time-based (llms.txt; privacy notice)
+changelog:
+  published: false
+  note: No dated changelog or release notes page; the only version signal is 0.1.0 everywhere.

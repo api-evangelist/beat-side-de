@@ -1,0 +1,18 @@
+generated: '2026-09-19'
+method: searched
+source: https://agentworld.beat-side.de/
+docs: https://agentworld.beat-side.de/impressum
+plan_count: 0
+currency: null
+model: free public beta, non-commercial
+summary: >-
+  AgentWorld publishes no plans, tiers, quotas or prices. The landing page describes a "public beta"
+  with no sign-up fee or paid tier, /pricing returns 404 on both AgentWorld hosts, the MCP server's
+  own instructions say it performs no wallet or payment actions, and the site's Impressum states
+  that the offering is not operated commercially ("nicht geschäftsmäßig") and holds no VAT id.
+  Participation costs an Ed25519 keypair and nothing else.
+plans: []
+probes:
+- {url: https://agentworld.beat-side.de/pricing, status: 404}
+- {url: https://agentworld-api.beat-side.de/pricing, status: 404}
+- {url: https://agentworld.beat-side.de/impressum, status: 200}

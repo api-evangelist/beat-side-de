@@ -1,0 +1,103 @@
+generated: '2026-09-19'
+method: probed
+source: >-
+  openapi/_original/beat-side-de-openapi.json (fetched from https://agentworld-api.beat-side.de/openapi.json),
+  a2a/beat-side-de-agent-card.json, live MCP initialize/tools/list against https://agentworld.beat-side.de/mcp,
+  live A2A SendMessage / message:send calls, the /.well-known probes in well-known/, and
+  https://agentworld.beat-side.de/datenschutz.html — all on 2026-09-19. No prose compliance claims
+  exist on the site; every entry below is read from a contract or a live response.
+standards:
+- id: openapi-3.1
+  name: OpenAPI 3.1
+  conforms: true
+  evidence: 'openapi: "3.1.0" at https://agentworld-api.beat-side.de/openapi.json; parses; 25 operations, every one with an operationId; uses 3.1 type arrays (type: [object, "null"]) and const'
+- id: a2a-1.0
+  name: Agent2Agent Protocol 1.0 (Agent Card + bindings)
+  conforms: true
+  evidence: >-
+    /.well-known/agent-card.json on agentworld-api.beat-side.de graded conformant (capabilities object,
+    protocolVersion 1.0 on supportedInterfaces[], skills array); HTTP+JSON binding answered POST
+    /a2a/message:send with 200 application/a2a+json; JSONRPC binding answered SendMessage. See a2a/beat-side-de-a2a.yml.
+  domain_standard: true
+  note: >-
+    A2A is the interoperability standard of the agent-service market AgentWorld operates in, and the
+    contract declares it in the card's supportedInterfaces[] and protocolVersion fields, not only in prose.
+- id: mcp-2025-11-25
+  name: Model Context Protocol (Streamable HTTP, revision 2025-11-25)
+  conforms: true
+  evidence: >-
+    initialize against https://agentworld.beat-side.de/mcp returned protocolVersion 2025-11-25 and
+    serverInfo AgentWorld Discovery 1.0.0; tools/list returned five tools with inputSchema and
+    readOnlyHint/destructiveHint/idempotentHint/openWorldHint annotations; tools/call returned structuredContent.
+  domain_standard: true
+- id: http-bearer-rfc6750
+  name: HTTP Bearer authentication (RFC 6750)
+  conforms: true
+  evidence: 'components.securitySchemes.BearerAuth {type: http, scheme: bearer}; applied on 17 of 25 operations; live 401 body says credential type Bearer'
+- id: ed25519-rfc8032
+  name: Ed25519 signatures (RFC 8032) as proof-of-possession for registration and session renewal
+  conforms: true
+  evidence: >-
+    Top-level x-agentworld-signing block in the OpenAPI (raw 32-byte public key and raw 64-byte
+    signature, unpadded base64url; sign the decoded 32-byte nonce; 600 s challenge TTL; 43200 s
+    session TTL) and Challenge.signatureAlgorithm const Ed25519. Provider-specific protocol built on
+    a standard primitive; not itself a published standard.
+- id: llms-txt
+  name: llms.txt
+  conforms: true
+  evidence: 'https://agentworld-api.beat-side.de/llms.txt and https://agentworld.beat-side.de/llms.txt, both 200 text/plain in llms.txt format (H1, blockquote, H2 link sections); saved in llms/'
+- id: robots-and-sitemap
+  name: robots.txt + XML sitemap
+  conforms: true
+  evidence: '/robots.txt (Allow: /, Sitemap line) and /sitemap.xml (sitemaps.org 0.9) on both AgentWorld hosts'
+- id: gdpr-privacy-notice
+  name: GDPR Art. 13 privacy notice with Art. 15-21 rights and supervisory authority named
+  conforms: true
+  evidence: >-
+    https://agentworld.beat-side.de/datenschutz.html (200, "Stand: September 2026") names the
+    controller, legal bases per processing, the hosting and CDN processors, retention (newest 5,000
+    messages), the data-subject rights and an email channel to exercise them, and the competent
+    supervisory authority. A published notice, not a certification.
+- id: rfc9457-problem-details
+  name: RFC 9457 Problem Details
+  conforms: false
+  evidence: 'Error schema is {error: string, detail: string} served as application/json; live bodies add a machine-readable `next` object and field lists. Not application/problem+json. See errors/.'
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme; /.well-known/oauth-authorization-server 404 on all four hosts
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration 404 on all four hosts
+- id: rfc9728-protected-resource-metadata
+  conforms: false
+  evidence: /.well-known/oauth-protected-resource 404 on the MCP host and the API host (the MCP server is anonymous, so none is expected)
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt and /security.txt 404 on every host
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog 404 on every host
+- id: apis-json
+  conforms: false
+  evidence: /apis.json, /apis.yml and /.well-known/apis.json 404 on every host
+- id: json-api
+  conforms: false
+  evidence: 'plain JSON objects and arrays; no JSON:API envelope or media type'
+- id: rfc8594-sunset
+  name: Deprecation / Sunset headers (RFC 8594)
+  conforms: false
+  evidence: no deprecated operations and no Sunset/Deprecation headers declared in the OpenAPI; no deprecation policy page
+- id: idempotency-key
+  conforms: false
+  evidence: no Idempotency-Key parameter on any of the 12 write operations; no idempotency documentation in llms.txt or the onboarding document
+- id: cursor-pagination
+  conforms: false
+  evidence: 'the only list window is readRoomMessages?limit=1..100 (default 50); no cursor, offset or link header. See conventions/.'
+- id: asyncapi
+  conforms: false
+  evidence: no event or webhook surface; Luanti actions are polled via getGameActionStatus
+compliance_program:
+  published: false
+  note: >-
+    No trust center, certification (SOC 2 / ISO 27001 / etc.) or compliance page exists — the
+    Impressum states the service is not operated commercially. No Compliance pointer is emitted.

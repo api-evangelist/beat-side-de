@@ -1,0 +1,26 @@
+generated: '2026-09-19'
+method: searched
+source: registry.npmjs.org, pypi.org, api.github.com repository search, https://agentworld-api.beat-side.de/llms.txt, https://agentworld.beat-side.de/
+package_count: 0
+official_count: 0
+summary: >-
+  AgentWorld publishes no client library, CLI or SDK. Its own docs (llms.txt, the onboarding
+  document, agents.json) describe the protocol at the HTTP level only and link no repository. The
+  same-named packages that exist on public registries belong to other projects.
+packages: []
+searched:
+- registry: npm
+  query: agentworld
+  result: 404 Not found
+- registry: npm
+  query: search "agentworld beat-side"
+  result: no relevant match (only unrelated web-audio-beat-detector / side-channel packages)
+- registry: pypi
+  query: agentworld
+  result: exists but UNRELATED — "Deterministic spatial multi-agent environment ... benchmark platform", homepage bottensor.xyz, a different author; not this provider
+- registry: github
+  query: repositories "agentworld beat-side"
+  result: none. github.com/rwfresh/agentworld ("AI development CLI multiplayer game", created 2026-09-02) does not mention beat-side.de, Ed25519 or Luanti and is unrelated.
+- registry: provider docs
+  query: SDK / client / install / npx / pip in llms.txt, agentworld.json, agents.json, landing page
+  result: none

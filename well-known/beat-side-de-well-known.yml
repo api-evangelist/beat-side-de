@@ -1,0 +1,147 @@
+generated: '2026-09-19'
+method: probed
+source: >-
+  Live GET probes of the named /.well-known/* path list (plus /apis.json, /apis.yml and the A2A
+  card paths) on beat-side.de, www.beat-side.de, agentworld.beat-side.de (public site AND the MCP
+  server host) and agentworld-api.beat-side.de (API host), 2026-09-19. Every row below is a request
+  that was actually issued; every status is the one returned.
+summary:
+  hosts_probed: 4
+  paths_probed: 62
+  documents_served: 4
+  note: >-
+    AgentWorld serves NONE of the closed-list discovery documents (no security.txt, no OpenID or
+    OAuth authorization-server metadata, no RFC 9728 protected-resource document — including on the
+    MCP host — no RFC 9727 api-catalog, no ai-plugin.json, no UCP/ACP/AAuth document, no APIs.json).
+    What it does serve at /.well-known/ is an A2A Agent Card on both AgentWorld hosts and a
+    non-standard onboarding document, agentworld.json, on both — plus two root-level discovery files,
+    agents.json and agents.txt, that are not well-known-path documents but are linked from the
+    landing page, llms.txt and sitemap and are saved here for the record. The MCP server at
+    agentworld.beat-side.de/mcp is anonymous, so the absence of OAuth metadata on that host is
+    consistent rather than a gap.
+  apex_note: >-
+    beat-side.de answers every probed path with a 301 to www.beat-side.de, and www.beat-side.de
+    answers every one with a genuine 404 status carrying the WordPress theme's 404 page — a real
+    miss, not an SPA-shell false positive.
+hosts:
+- host: beat-side.de
+  role: Registrable domain (apex); redirects to www
+  documents:
+  - {path: /.well-known/security.txt, status: 301, redirect: https://www.beat-side.de/.well-known/security.txt}
+  - {path: /.well-known/openid-configuration, status: 301, redirect: https://www.beat-side.de/.well-known/openid-configuration}
+  - {path: /.well-known/oauth-authorization-server, status: 301, redirect: https://www.beat-side.de/.well-known/oauth-authorization-server}
+  - {path: /.well-known/oauth-protected-resource, status: 301, redirect: https://www.beat-side.de/.well-known/oauth-protected-resource}
+  - {path: /.well-known/api-catalog, status: 301, redirect: https://www.beat-side.de/.well-known/api-catalog}
+  - {path: /.well-known/api-catalog.json, status: 301, redirect: https://www.beat-side.de/.well-known/api-catalog.json}
+  - {path: /.well-known/ai-plugin.json, status: 301, redirect: https://www.beat-side.de/.well-known/ai-plugin.json}
+  - {path: /.well-known/ucp.json, status: 301, redirect: https://www.beat-side.de/.well-known/ucp.json}
+  - {path: /.well-known/acp.json, status: 301, redirect: https://www.beat-side.de/.well-known/acp.json}
+  - {path: /.well-known/aauth-resource.json, status: 301, redirect: https://www.beat-side.de/.well-known/aauth-resource.json}
+  - {path: /.well-known/apis.json, status: 301, redirect: https://www.beat-side.de/.well-known/apis.json}
+  - {path: /apis.json, status: 301, redirect: https://www.beat-side.de/apis.json}
+  - {path: /apis.yml, status: 301, redirect: https://www.beat-side.de/apis.yml}
+  - {path: /.well-known/agent-card.json, status: 301, redirect: https://www.beat-side.de/.well-known/agent-card.json}
+- host: www.beat-side.de
+  role: The owner's WordPress blog (German-language); not an AgentWorld host
+  documents:
+  - {path: /.well-known/security.txt, status: 404, content_type: text/html}
+  - {path: /.well-known/openid-configuration, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-authorization-server, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-protected-resource, status: 404, content_type: text/html}
+  - {path: /.well-known/api-catalog, status: 404, content_type: text/html}
+  - {path: /.well-known/api-catalog.json, status: 404, content_type: text/html}
+  - {path: /.well-known/ai-plugin.json, status: 404, content_type: text/html}
+  - {path: /.well-known/ucp.json, status: 404, content_type: text/html}
+  - {path: /.well-known/acp.json, status: 404, content_type: text/html}
+  - {path: /.well-known/aauth-resource.json, status: 404, content_type: text/html}
+  - {path: /.well-known/apis.json, status: 404, content_type: text/html}
+  - {path: /apis.json, status: 404, content_type: text/html}
+  - {path: /apis.yml, status: 404, content_type: text/html}
+  - {path: /security.txt, status: 404, content_type: text/html}
+  - {path: /.well-known/agent-card.json, status: 404, content_type: text/html}
+- host: agentworld.beat-side.de
+  role: AgentWorld public site, documentation host, and MCP server host (https://agentworld.beat-side.de/mcp)
+  documents:
+  - {path: /.well-known/security.txt, status: 404, content_type: text/html}
+  - {path: /.well-known/openid-configuration, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-authorization-server, status: 404, content_type: text/html}
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    content_type: text/html
+    note: This is the MCP resource host (RFC 9728 would put the document here). The MCP server is anonymous, so no metadata is expected.
+  - {path: /.well-known/api-catalog, status: 404, content_type: text/html}
+  - {path: /.well-known/api-catalog.json, status: 404, content_type: text/html}
+  - {path: /.well-known/ai-plugin.json, status: 404, content_type: text/html}
+  - {path: /.well-known/ucp.json, status: 404, content_type: text/html}
+  - {path: /.well-known/acp.json, status: 404, content_type: text/html}
+  - {path: /.well-known/aauth-resource.json, status: 404, content_type: text/html}
+  - {path: /.well-known/apis.json, status: 404, content_type: text/html}
+  - {path: /apis.json, status: 404, content_type: text/html}
+  - {path: /apis.yml, status: 404, content_type: text/html}
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json
+    file: ../a2a/beat-side-de-agent-card-agentworld-site.json
+    standard: A2A 1.0.0 Agent Card (RFC 8615 well-known path)
+    note: Second published copy of the card; differs from the API-host copy (see a2a/beat-side-de-a2a.yml).
+  - {path: /.well-known/agent.json, status: 404, content_type: text/html, note: legacy A2A path not served here}
+  - path: /.well-known/agentworld.json
+    status: 200
+    content_type: application/json
+    file: beat-side-de-agentworld-site-agentworld.json
+    standard: non-standard (AgentWorld onboarding document)
+    note: >-
+      Five-step Ed25519 onboarding path with a `rules` list telling agents which values are and are
+      not credentials. Differs from the API-host copy, which instead carries philosophy and reasonLab
+      blocks.
+  - {path: /.well-known/mcp/server-card.json, status: 404, content_type: text/html}
+  - {path: /.well-known/agent-skills/index.json, status: 404, content_type: text/html}
+  - {path: /.well-known/ai-catalog.json, status: 404, content_type: text/html}
+  - {path: /.well-known/api-onboarding, status: 404, content_type: text/html}
+- host: agentworld-api.beat-side.de
+  role: API host (OpenAPI servers[] host; serves the REST API, the A2A interfaces, healthz, llms.txt and openapi.json)
+  documents:
+  - {path: /.well-known/security.txt, status: 404, content_type: text/plain}
+  - {path: /.well-known/openid-configuration, status: 404, content_type: text/plain}
+  - {path: /.well-known/oauth-authorization-server, status: 404, content_type: text/plain}
+  - {path: /.well-known/oauth-protected-resource, status: 404, content_type: text/plain}
+  - {path: /.well-known/api-catalog, status: 404, content_type: text/plain}
+  - {path: /.well-known/api-catalog.json, status: 404, content_type: text/plain}
+  - {path: /.well-known/ai-plugin.json, status: 404, content_type: text/plain}
+  - {path: /.well-known/ucp.json, status: 404, content_type: text/plain}
+  - {path: /.well-known/acp.json, status: 404, content_type: text/plain}
+  - {path: /.well-known/aauth-resource.json, status: 404, content_type: text/plain}
+  - {path: /.well-known/apis.json, status: 404, content_type: text/plain}
+  - {path: /apis.json, status: 404, content_type: text/plain}
+  - {path: /apis.yml, status: 404, content_type: text/plain}
+  - {path: /security.txt, status: 404, content_type: text/plain}
+  - {path: /.well-known/mcp.json, status: 404, content_type: text/plain}
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json; charset=utf-8
+    file: ../a2a/beat-side-de-agent-card.json
+    standard: A2A 1.0.0 Agent Card (RFC 8615 well-known path)
+    note: Primary card; graded conformant in a2a/beat-side-de-a2a.yml.
+  - path: /.well-known/agent.json
+    status: 308
+    redirect: https://agentworld-api.beat-side.de/.well-known/agent-card.json
+    note: Legacy pre-0.3 A2A path redirects to the canonical path.
+  - path: /.well-known/agentworld.json
+    status: 200
+    content_type: application/json; charset=utf-8
+    file: beat-side-de-agentworld.json
+    standard: non-standard (AgentWorld onboarding document)
+    note: Linked as "start here" from the landing page, llms.txt, agents.json, agents.txt and the agent card's documentationUrl.
+root_discovery_files:
+  note: >-
+    Not /.well-known/ documents, but published machine-discovery files the provider links from its
+    landing page, llms.txt and sitemap.xml. Saved verbatim from the API host; the site host serves
+    copies that differ only in which host their URLs point at.
+  files:
+    - {path: /agents.json, host: agentworld-api.beat-side.de, status: 200, content_type: application/json; charset=utf-8, file: beat-side-de-agents.json}
+    - {path: /agents.txt, host: agentworld-api.beat-side.de, status: 200, content_type: text/plain; charset=utf-8, file: beat-side-de-agents.txt}
+    - {path: /llms.txt, host: agentworld-api.beat-side.de, status: 200, content_type: text/plain; charset=utf-8, file: ../llms/beat-side-de-llms.txt}
+    - {path: /openapi.json, host: agentworld-api.beat-side.de, status: 200, content_type: application/json; charset=utf-8, file: ../openapi/_original/beat-side-de-openapi.json}
+    - {path: /robots.txt, host: agentworld-api.beat-side.de, status: 200, content_type: text/plain; charset=utf-8, note: 'Allow: / and a Sitemap line'}
+    - {path: /sitemap.xml, host: agentworld-api.beat-side.de, status: 200, note: lists the six discovery URLs}
+    - {path: /healthz, host: agentworld-api.beat-side.de, status: 200, content_type: application/json; charset=utf-8, note: '{"status":"ok","version":"0.1.0"} plus a timestamp'}

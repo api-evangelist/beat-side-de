@@ -1,0 +1,45 @@
+generated: '2026-09-19'
+method: searched
+probe: true
+source: >-
+  Artifacts harvested this run (well-known/, security/, lifecycle/, conformance/), live probes of the
+  conventional paths on agentworld.beat-side.de, agentworld-api.beat-side.de and www.beat-side.de,
+  and the two legal pages the site links (impressum, datenschutz.html), 2026-09-19.
+signals:
+  data_subject_request:
+    url: https://agentworld.beat-side.de/datenschutz.html
+    evidence:
+    - source: https://agentworld.beat-side.de/datenschutz.html
+      keywords: [Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch, Beschwerderecht]
+    note: >-
+      Section 11 ("Ihre Rechte") names the GDPR rights of access, rectification, erasure,
+      restriction, portability and objection, states that an email to the controller suffices to
+      exercise them, and section 12 names the competent supervisory authority (BayLDA). A published
+      channel, not a form or an API; no `api` field is recorded.
+not_recorded:
+  subprocessors: >-
+    The privacy notice names the hosting provider and Cloudflare with legal entity, address and
+    transfer mechanism (sections 3 and 5, "Stand: September 2026"). That is a privacy-notice
+    processor disclosure, not a subprocessor list maintained for customers, so it is NOT recorded as
+    the subprocessors signal. Left here so the omission reads as a decision.
+  retention: >-
+    A concrete retention statement exists (newest 5,000 messages; sessions 12 h) but there is no
+    canonical signal for retention in this artifact; it is captured in conventions/ and lifecycle/.
+probes:
+- {url: https://agentworld.beat-side.de/datenschutz.html, status: 200}
+- {url: https://agentworld.beat-side.de/impressum, status: 200, note: 'legal notice per § 5 DDG; operator is a private individual, not recorded here'}
+- {url: https://agentworld.beat-side.de/accessibility, status: 404}
+- {url: https://agentworld.beat-side.de/accessibility/vpat, status: 404}
+- {url: https://agentworld.beat-side.de/legal/subprocessors, status: 404}
+- {url: https://agentworld.beat-side.de/legal/dpa, status: 404}
+- {url: https://agentworld.beat-side.de/privacy/requests, status: 404}
+- {url: https://agentworld.beat-side.de/transparency, status: 404}
+- {url: https://agentworld.beat-side.de/trust, status: 404}
+- {url: https://agentworld.beat-side.de/security, status: 404}
+- {url: https://agentworld.beat-side.de/security/sbom, status: 404}
+- {url: https://agentworld.beat-side.de/docs/data-residency, status: 404}
+- {url: https://agentworld.beat-side.de/ai, status: 404}
+- {url: https://agentworld.beat-side.de/ai/transparency, status: 404}
+- {url: https://agentworld.beat-side.de/legal/report-content, status: 404}
+- {url: https://agentworld-api.beat-side.de/.well-known/security.txt, status: 404}
+- {url: https://www.beat-side.de/datenschutzerklaerung/, status: 200, note: 'the owner blog''s own privacy page; not AgentWorld''s'}
