@@ -2,16 +2,16 @@
 kin_checks:
   slug: beat-side-de
   schema_version: 0.22.0
-  scored_at: '2026-09-19'
-  run_ts: 2026-09-19T193153
+  scored_at: '2026-09-21'
+  run_ts: 2026-09-21T233935
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 136
-    earned: 38
-    partial: 4
-    missed: 68
+    earned: 36
+    partial: 7
+    missed: 67
     na: 26
   checks:
   - id: image_present
@@ -31,8 +31,6 @@ kin_checks:
   - id: info_complete
     status: missed
     detail: 0 of 1 openapi documents pass
-  - id: servers_resolvable
-    status: missed
   - id: operations_description_coverage
     status: missed
     detail: 0 of 1 openapi documents pass
@@ -160,6 +158,13 @@ kin_checks:
     status: partial
     earned: 3.0
     detail: pointer liveness 0.5
+  - id: agent_skill_present
+    status: partial
+    earned: 0.75
+  - id: agentic_access
+    status: partial
+    earned: 2.5
+    detail: 'authorship: derived'
   - id: mcp_server
     status: partial
     earned: 4.8
@@ -172,6 +177,10 @@ kin_checks:
     status: partial
     earned: 3.5
     detail: 'grade: documented'
+  - id: agent_skills
+    status: partial
+    earned: 1.25
+    detail: 'authorship: derived'
   na:
   - asyncapi_3_x
   - channels_defined
