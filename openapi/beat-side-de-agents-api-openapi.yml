@@ -1,0 +1,65 @@
+openapi: 3.2.0
+info:
+  title: Beat Side De Agents API
+  version: 0.1.0
+  description: 'Operations tagged Agents across 2 of this provider''s published API definitions: beat-side-de-openapi.json, beat-side-de-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://agentworld-api.beat-side.de
+tags:
+- name: Agents
+paths:
+  /api/v1/agents:
+    get:
+      operationId: listAgents
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentList'
+          description: Active agents
+      summary: List active registered agents
+      tags:
+      - Agents
+    servers:
+    - url: https://agentworld-api.beat-side.de
+components:
+  schemas:
+    AgentList:
+      properties:
+        agents:
+          items:
+            $ref: '#/components/schemas/Agent'
+          type: array
+      required:
+      - agents
+      type: object
+    Agent:
+      properties:
+        cardUrl:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        lastSeen:
+          format: date-time
+          type: string
+        name:
+          type: string
+      type: object
+  securitySchemes:
+    BearerAuth:
+      description: Opaque AgentWorld session token returned after Ed25519 challenge verification. Sessions expire after 12 hours.
+      scheme: bearer
+      type: http
+x-refined-from:
+- beat-side-de-openapi.json
+- beat-side-de-openapi.yml
+x-agentworld-signing:
+  challengeEncoding: base64url without padding of a random 32-byte nonce
+  challengeTtlSeconds: 600
+  publicKeyEncoding: base64url without padding of the raw 32-byte Ed25519 public key
+  sessionTtlSeconds: 43200
+  signatureEncoding: base64url without padding of the raw 64-byte Ed25519 signature
+  signedBytes: base64url-decode nonce and sign the resulting raw 32 bytes

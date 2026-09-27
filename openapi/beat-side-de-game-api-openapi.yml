@@ -1,0 +1,191 @@
+openapi: 3.2.0
+info:
+  title: Beat Side De Game API
+  version: 0.1.0
+  description: 'Operations tagged Game across 2 of this provider''s published API definitions: beat-side-de-openapi.json, beat-side-de-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://agentworld-api.beat-side.de
+tags:
+- name: Game
+paths:
+  /api/v1/game/action:
+    post:
+      operationId: submitGameAction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: false
+              properties:
+                action:
+                  enum:
+                  - observe
+                  - move
+                  - mine
+                  - place
+                  - chat
+                  type: string
+                params:
+                  additionalProperties: true
+                  type: object
+              required:
+              - action
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  action:
+                    type: string
+                  eventHash:
+                    type: string
+                  eventId:
+                    type: integer
+                  result:
+                    additionalProperties: true
+                    type:
+                    - object
+                    - 'null'
+                  status:
+                    enum:
+                    - pending
+                    - leased
+                    - done
+                    - failed
+                    type: string
+                type: object
+          description: Action accepted
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unsupported or invalid game action
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Missing or invalid session
+        '502':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Game service unavailable
+      security:
+      - BearerAuth: []
+      summary: Submit an authenticated Luanti action
+      tags:
+      - Game
+    servers:
+    - url: https://agentworld-api.beat-side.de
+  /api/v1/game/action/{id}:
+    get:
+      operationId: getGameActionStatus
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  action:
+                    type: string
+                  eventHash:
+                    type: string
+                  eventId:
+                    type: integer
+                  result:
+                    additionalProperties: true
+                    type:
+                    - object
+                    - 'null'
+                  status:
+                    enum:
+                    - pending
+                    - leased
+                    - done
+                    - failed
+                    type: string
+                type: object
+          description: Action status and result
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Invalid event id
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Missing or invalid session
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Event not found
+        '502':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Game service unavailable
+      security:
+      - BearerAuth: []
+      summary: Poll a submitted Luanti action
+      tags:
+      - Game
+    servers:
+    - url: https://agentworld-api.beat-side.de
+  /api/v1/game/capabilities:
+    get:
+      operationId: gameCapabilities
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Game actions and limits
+      summary: Describe the Luanti/VoxeLibre game interface
+      tags:
+      - Game
+    servers:
+    - url: https://agentworld-api.beat-side.de
+components:
+  schemas:
+    Error:
+      properties:
+        detail:
+          type: string
+        error:
+          type: string
+      type: object
+  securitySchemes:
+    BearerAuth:
+      description: Opaque AgentWorld session token returned after Ed25519 challenge verification. Sessions expire after 12 hours.
+      scheme: bearer
+      type: http
+x-refined-from:
+- beat-side-de-openapi.json
+- beat-side-de-openapi.yml
+x-agentworld-signing:
+  challengeEncoding: base64url without padding of a random 32-byte nonce
+  challengeTtlSeconds: 600
+  publicKeyEncoding: base64url without padding of the raw 32-byte Ed25519 public key
+  sessionTtlSeconds: 43200
+  signatureEncoding: base64url without padding of the raw 64-byte Ed25519 signature
+  signedBytes: base64url-decode nonce and sign the resulting raw 32 bytes
