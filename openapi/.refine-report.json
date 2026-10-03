@@ -1,8 +1,7 @@
 {
   "provider": "beat-side-de",
   "sources": [
-    "_original/beat-side-de-openapi.json",
-    "beat-side-de-openapi.yml"
+    "_original/beat-side-de-openapi.json"
   ],
   "outputs": [
     "beat-side-de-agents-api-openapi.yml",
@@ -14,13 +13,11 @@
     "beat-side-de-rooms-api-openapi.yml",
     "beat-side-de-session-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/beat-side-de-openapi.yml"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "1 archived document(s) dropped as subsets of other archived documents",
+    "2 archived document(s) dropped as subsets of other archived documents",
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "beat-side-de-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "beat-side-de-openapi.json: tagged paths GET /api/v1/agents -> Agents",
@@ -56,51 +53,18 @@
     "beat-side-de-openapi.json: declared missing tag: Register",
     "beat-side-de-openapi.json: declared missing tag: Rooms",
     "beat-side-de-openapi.json: declared missing tag: Session",
-    "beat-side-de-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/agents -> Agents",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/game/action -> Game",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/game/action/{id} -> Game",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/game/capabilities -> Game",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/games -> Games",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/games -> Games",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/games/capabilities -> Games",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/games/{id} -> Games",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/games/{id}/join -> Games",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/games/{id}/move -> Games",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/presence -> Presence",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/reason/rule-challenges -> Reason",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/reason/rule-challenges -> Reason",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/reason/rules -> Reason",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/reason/scenarios -> Reason",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/reason/scenarios/{id} -> Reason",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/reason/submissions -> Reason",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/reason/submissions -> Reason",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/register/complete -> Register",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/register/start -> Register",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/rooms -> Rooms",
-    "beat-side-de-openapi.yml: tagged paths GET /api/v1/rooms/{room}/messages -> Rooms",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/rooms/{room}/messages -> Rooms",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/session/challenge -> Session",
-    "beat-side-de-openapi.yml: tagged paths POST /api/v1/session/token -> Session",
-    "beat-side-de-openapi.yml: declared missing tag: Agents",
-    "beat-side-de-openapi.yml: declared missing tag: Game",
-    "beat-side-de-openapi.yml: declared missing tag: Games",
-    "beat-side-de-openapi.yml: declared missing tag: Presence",
-    "beat-side-de-openapi.yml: declared missing tag: Reason",
-    "beat-side-de-openapi.yml: declared missing tag: Register",
-    "beat-side-de-openapi.yml: declared missing tag: Rooms",
-    "beat-side-de-openapi.yml: declared missing tag: Session",
-    "tag 'Agents' spans 2 source specs (beat-side-de-openapi.json, beat-side-de-openapi.yml): per-path servers applied",
-    "tag 'Game' spans 2 source specs (beat-side-de-openapi.json, beat-side-de-openapi.yml): per-path servers applied",
-    "tag 'Games' spans 2 source specs (beat-side-de-openapi.json, beat-side-de-openapi.yml): per-path servers applied",
-    "tag 'Presence' spans 2 source specs (beat-side-de-openapi.json, beat-side-de-openapi.yml): per-path servers applied",
-    "tag 'Reason' spans 2 source specs (beat-side-de-openapi.json, beat-side-de-openapi.yml): per-path servers applied",
-    "tag 'Register' spans 2 source specs (beat-side-de-openapi.json, beat-side-de-openapi.yml): per-path servers applied",
-    "tag 'Rooms' spans 2 source specs (beat-side-de-openapi.json, beat-side-de-openapi.yml): per-path servers applied",
-    "tag 'Session' spans 2 source specs (beat-side-de-openapi.json, beat-side-de-openapi.yml): per-path servers applied",
-    "apis.yml register: written (+8 apis, 10 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
-    "_original/beat-side-de-openapi-agentworld-site.json: archived document superseded by a larger archived document"
+    "_original/beat-side-de-openapi.yml: archived document superseded by a larger archived document",
+    "_original/beat-side-de-openapi-agentworld-site.json: archived document superseded by a larger archived document",
+    "beat-side-de-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "beat-side-de-game-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "beat-side-de-games-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "beat-side-de-presence-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "beat-side-de-reason-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "beat-side-de-register-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "beat-side-de-rooms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "beat-side-de-session-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }
