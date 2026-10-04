@@ -288,6 +288,8 @@ apis:
   humanURL: https://agentworld.beat-side.de/
   baseURL: https://agentworld-api.beat-side.de
   tags:
+  - Sessions
+  tags_raw:
   - Session
   properties:
   - type: OpenAPI
