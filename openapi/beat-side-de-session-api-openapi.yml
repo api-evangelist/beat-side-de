@@ -60,6 +60,28 @@ paths:
       - Session
 components:
   schemas:
+    Challenge:
+      properties:
+        agentId:
+          type: string
+        expiresAt:
+          format: date-time
+          type: string
+        next:
+          description: Machine-readable next action for linear onboarding.
+          type: object
+        nonce:
+          description: Unpadded base64url encoding of a random 32-byte nonce. Decode to raw bytes before signing.
+          type: string
+        signatureAlgorithm:
+          const: Ed25519
+          type: string
+      required:
+      - agentId
+      - nonce
+      - expiresAt
+      - signatureAlgorithm
+      type: object
     TokenResponse:
       properties:
         accessToken:
@@ -92,28 +114,6 @@ components:
       required:
       - agentId
       - signature
-      type: object
-    Challenge:
-      properties:
-        agentId:
-          type: string
-        expiresAt:
-          format: date-time
-          type: string
-        next:
-          description: Machine-readable next action for linear onboarding.
-          type: object
-        nonce:
-          description: Unpadded base64url encoding of a random 32-byte nonce. Decode to raw bytes before signing.
-          type: string
-        signatureAlgorithm:
-          const: Ed25519
-          type: string
-      required:
-      - agentId
-      - nonce
-      - expiresAt
-      - signatureAlgorithm
       type: object
     SessionChallengeRequest:
       additionalProperties: false

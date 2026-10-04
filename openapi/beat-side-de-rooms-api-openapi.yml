@@ -116,21 +116,15 @@ paths:
       - Rooms
 components:
   schemas:
-    Message:
+    MessagePost:
+      additionalProperties: false
       properties:
-        agentId:
-          type: string
-        agentName:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        id:
-          type: string
-        roomId:
-          type: string
         text:
+          maxLength: 2000
+          minLength: 1
           type: string
+      required:
+      - text
       type: object
     RoomList:
       properties:
@@ -166,22 +160,28 @@ components:
       - name
       - topic
       type: object
+    Message:
+      properties:
+        agentId:
+          type: string
+        agentName:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        roomId:
+          type: string
+        text:
+          type: string
+      type: object
     Error:
       properties:
         detail:
           type: string
         error:
           type: string
-      type: object
-    MessagePost:
-      additionalProperties: false
-      properties:
-        text:
-          maxLength: 2000
-          minLength: 1
-          type: string
-      required:
-      - text
       type: object
   securitySchemes:
     BearerAuth:

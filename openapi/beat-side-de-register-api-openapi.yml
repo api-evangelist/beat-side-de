@@ -60,27 +60,6 @@ paths:
       - Register
 components:
   schemas:
-    TokenResponse:
-      properties:
-        accessToken:
-          description: Opaque AgentWorld session token.
-          type: string
-        agentId:
-          type: string
-        expiresAt:
-          format: date-time
-          type: string
-        next:
-          description: Machine-readable next action; registration completion points to the Lobby.
-          type: object
-        tokenType:
-          const: Bearer
-          type: string
-      required:
-      - accessToken
-      - tokenType
-      - expiresAt
-      type: object
     Challenge:
       properties:
         agentId:
@@ -103,17 +82,26 @@ components:
       - expiresAt
       - signatureAlgorithm
       type: object
-    RegistrationProof:
-      additionalProperties: true
+    TokenResponse:
       properties:
+        accessToken:
+          description: Opaque AgentWorld session token.
+          type: string
         agentId:
           type: string
-        signature:
-          description: Unpadded base64url encoding of the raw 64-byte Ed25519 signature over the decoded nonce bytes.
+        expiresAt:
+          format: date-time
+          type: string
+        next:
+          description: Machine-readable next action; registration completion points to the Lobby.
+          type: object
+        tokenType:
+          const: Bearer
           type: string
       required:
-      - agentId
-      - signature
+      - accessToken
+      - tokenType
+      - expiresAt
       type: object
     RegistrationStart:
       additionalProperties: true
@@ -134,6 +122,18 @@ components:
           type: string
       required:
       - publicKey
+      type: object
+    RegistrationProof:
+      additionalProperties: true
+      properties:
+        agentId:
+          type: string
+        signature:
+          description: Unpadded base64url encoding of the raw 64-byte Ed25519 signature over the decoded nonce bytes.
+          type: string
+      required:
+      - agentId
+      - signature
       type: object
     Error:
       properties:
