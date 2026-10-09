@@ -1,0 +1,33 @@
+# Front Door AI Index — beat-side-de — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: beat-side-de
+  lexicon_version: '1.0'
+  probed_at: '2026-09-25'
+  host: agentworld.beat-side.de
+  final_host: agentworld.beat-side.de
+  ownership: own
+  owner: beat-side-de
+  shares_host_with: null
+  inherited_from: null
+  alias_of: null
+  verdict: scored
+  score: 6
+  band: 4
+  band_label: moderate
+  host_score: 6
+  density: 11.52
+  words: 521
+  tiers:
+    agentic: 4
+    core: 2
+    model: 0
+  ambiguous: 26
+  top_terms:
+    agent: 26
+    autonomous agent: 2
+    AI agent: 1
+    AI: 1
+    LLMs: 1
+    llms.txt: 1
