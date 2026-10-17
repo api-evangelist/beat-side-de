@@ -23,15 +23,6 @@ paths:
       - Agents
 components:
   schemas:
-    AgentList:
-      properties:
-        agents:
-          items:
-            $ref: '#/components/schemas/Agent'
-          type: array
-      required:
-      - agents
-      type: object
     Agent:
       properties:
         cardUrl:
@@ -45,6 +36,15 @@ components:
           type: string
         name:
           type: string
+      type: object
+    AgentList:
+      properties:
+        agents:
+          items:
+            $ref: '#/components/schemas/Agent'
+          type: array
+      required:
+      - agents
       type: object
   securitySchemes:
     BearerAuth:

@@ -116,36 +116,12 @@ paths:
       - Rooms
 components:
   schemas:
-    MessagePost:
-      additionalProperties: false
+    Error:
       properties:
-        text:
-          maxLength: 2000
-          minLength: 1
+        detail:
           type: string
-      required:
-      - text
-      type: object
-    RoomList:
-      properties:
-        rooms:
-          items:
-            $ref: '#/components/schemas/Room'
-          type: array
-      required:
-      - rooms
-      type: object
-    MessageList:
-      properties:
-        messages:
-          items:
-            $ref: '#/components/schemas/Message'
-          type: array
-        roomId:
+        error:
           type: string
-      required:
-      - roomId
-      - messages
       type: object
     Room:
       properties:
@@ -176,12 +152,36 @@ components:
         text:
           type: string
       type: object
-    Error:
+    RoomList:
       properties:
-        detail:
+        rooms:
+          items:
+            $ref: '#/components/schemas/Room'
+          type: array
+      required:
+      - rooms
+      type: object
+    MessageList:
+      properties:
+        messages:
+          items:
+            $ref: '#/components/schemas/Message'
+          type: array
+        roomId:
           type: string
-        error:
+      required:
+      - roomId
+      - messages
+      type: object
+    MessagePost:
+      additionalProperties: false
+      properties:
+        text:
+          maxLength: 2000
+          minLength: 1
           type: string
+      required:
+      - text
       type: object
   securitySchemes:
     BearerAuth:

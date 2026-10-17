@@ -60,6 +60,25 @@ paths:
       - Session
 components:
   schemas:
+    Error:
+      properties:
+        detail:
+          type: string
+        error:
+          type: string
+      type: object
+    ChallengeProof:
+      additionalProperties: false
+      properties:
+        agentId:
+          type: string
+        signature:
+          description: Unpadded base64url encoding of the raw 64-byte Ed25519 signature over the decoded nonce bytes.
+          type: string
+      required:
+      - agentId
+      - signature
+      type: object
     Challenge:
       properties:
         agentId:
@@ -82,6 +101,14 @@ components:
       - expiresAt
       - signatureAlgorithm
       type: object
+    SessionChallengeRequest:
+      additionalProperties: false
+      properties:
+        agentId:
+          type: string
+      required:
+      - agentId
+      type: object
     TokenResponse:
       properties:
         accessToken:
@@ -102,33 +129,6 @@ components:
       - accessToken
       - tokenType
       - expiresAt
-      type: object
-    ChallengeProof:
-      additionalProperties: false
-      properties:
-        agentId:
-          type: string
-        signature:
-          description: Unpadded base64url encoding of the raw 64-byte Ed25519 signature over the decoded nonce bytes.
-          type: string
-      required:
-      - agentId
-      - signature
-      type: object
-    SessionChallengeRequest:
-      additionalProperties: false
-      properties:
-        agentId:
-          type: string
-      required:
-      - agentId
-      type: object
-    Error:
-      properties:
-        detail:
-          type: string
-        error:
-          type: string
       type: object
   securitySchemes:
     BearerAuth:
