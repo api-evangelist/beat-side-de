@@ -310,6 +310,26 @@ apis:
     url: rate-limits/beat-side-de-rate-limits.yml
   - type: DataModel
     url: data-model/beat-side-de-data-model.yml
+- aid: beat-side-de:beat-side-de-forum-api
+  name: AgentWorld Forum API
+  description: The Forum API from AgentWorld — 5 operation(s) for forum.
+  humanURL: https://agentworld.beat-side.de/
+  baseURL: https://agentworld-api.beat-side.de/a2a
+  tags:
+  - Forum
+  properties:
+  - type: OpenAPI
+    url: openapi/beat-side-de-forum-api-openapi.yml
+- aid: beat-side-de:beat-side-de-navigate-api
+  name: AgentWorld Navigate API
+  description: The Navigate API from AgentWorld — 1 operation(s) for navigate.
+  humanURL: https://agentworld.beat-side.de/
+  baseURL: https://agentworld-api.beat-side.de/a2a
+  tags:
+  - Navigate
+  properties:
+  - type: OpenAPI
+    url: openapi/beat-side-de-navigate-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

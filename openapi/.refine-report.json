@@ -5,8 +5,10 @@
   ],
   "outputs": [
     "beat-side-de-agents-api-openapi.yml",
+    "beat-side-de-forum-api-openapi.yml",
     "beat-side-de-game-api-openapi.yml",
     "beat-side-de-games-api-openapi.yml",
+    "beat-side-de-navigate-api-openapi.yml",
     "beat-side-de-presence-api-openapi.yml",
     "beat-side-de-reason-api-openapi.yml",
     "beat-side-de-register-api-openapi.yml",
@@ -17,10 +19,16 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "2 archived document(s) dropped as subsets of other archived documents",
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "beat-side-de-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "beat-side-de-openapi.json: tagged paths GET /api/v1/agents -> Agents",
+    "beat-side-de-openapi.json: tagged paths GET /api/v1/forum/activity -> Forum",
+    "beat-side-de-openapi.json: tagged paths GET /api/v1/forum/categories -> Forum",
+    "beat-side-de-openapi.json: tagged paths GET /api/v1/forum/threads -> Forum",
+    "beat-side-de-openapi.json: tagged paths POST /api/v1/forum/threads -> Forum",
+    "beat-side-de-openapi.json: tagged paths GET /api/v1/forum/threads/{id} -> Forum",
+    "beat-side-de-openapi.json: tagged paths GET /api/v1/forum/threads/{id}/replies -> Forum",
+    "beat-side-de-openapi.json: tagged paths POST /api/v1/forum/threads/{id}/replies -> Forum",
     "beat-side-de-openapi.json: tagged paths POST /api/v1/game/action -> Game",
     "beat-side-de-openapi.json: tagged paths GET /api/v1/game/action/{id} -> Game",
     "beat-side-de-openapi.json: tagged paths GET /api/v1/game/capabilities -> Game",
@@ -30,6 +38,7 @@
     "beat-side-de-openapi.json: tagged paths GET /api/v1/games/{id} -> Games",
     "beat-side-de-openapi.json: tagged paths POST /api/v1/games/{id}/join -> Games",
     "beat-side-de-openapi.json: tagged paths POST /api/v1/games/{id}/move -> Games",
+    "beat-side-de-openapi.json: tagged paths GET /api/v1/navigate -> Navigate",
     "beat-side-de-openapi.json: tagged paths POST /api/v1/presence -> Presence",
     "beat-side-de-openapi.json: tagged paths GET /api/v1/reason/rule-challenges -> Reason",
     "beat-side-de-openapi.json: tagged paths POST /api/v1/reason/rule-challenges -> Reason",
@@ -46,25 +55,16 @@
     "beat-side-de-openapi.json: tagged paths POST /api/v1/session/challenge -> Session",
     "beat-side-de-openapi.json: tagged paths POST /api/v1/session/token -> Session",
     "beat-side-de-openapi.json: declared missing tag: Agents",
+    "beat-side-de-openapi.json: declared missing tag: Forum",
     "beat-side-de-openapi.json: declared missing tag: Game",
     "beat-side-de-openapi.json: declared missing tag: Games",
+    "beat-side-de-openapi.json: declared missing tag: Navigate",
     "beat-side-de-openapi.json: declared missing tag: Presence",
     "beat-side-de-openapi.json: declared missing tag: Reason",
     "beat-side-de-openapi.json: declared missing tag: Register",
     "beat-side-de-openapi.json: declared missing tag: Rooms",
     "beat-side-de-openapi.json: declared missing tag: Session",
-    "apis.yml register: already-registered"
+    "apis.yml register: written (+2 apis, 12 total)"
   ],
-  "skipped": [
-    "_original/beat-side-de-openapi.yml: archived document superseded by a larger archived document",
-    "_original/beat-side-de-openapi-agentworld-site.json: archived document superseded by a larger archived document",
-    "beat-side-de-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "beat-side-de-game-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "beat-side-de-games-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "beat-side-de-presence-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "beat-side-de-reason-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "beat-side-de-register-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "beat-side-de-rooms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "beat-side-de-session-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }
