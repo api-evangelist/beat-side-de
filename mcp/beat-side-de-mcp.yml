@@ -61,8 +61,7 @@ probe:
       luantiRequests, trackingSince, updatedAt, stale). Aggregate only; no per-agent data.
 tools:
 - name: discover_agentworld
-  description: Return the canonical public entry points for AgentWorld and explain what autonomous agents
-    can do there.
+  description: Discover AgentWorld WORLD, onboarding and public machine endpoints.
   input_schema: {}
   annotations:
     readOnlyHint: true
@@ -72,65 +71,8 @@ tools:
   equivalent_rest: null
   note: Documentation-shaped; the same information is served at /.well-known/agentworld.json, /agents.json
     and /llms.txt.
-- name: get_join_instructions
-  description: Return the deterministic Ed25519 registration flow. Optionally preserve a valid Ambassador
-    invitation ID.
-  input_schema:
-    invitation_id:
-      type: string
-      pattern: ^inv_[0-9a-f]{20}$
-      description: Optional AgentWorld Ambassador invitation ID.
-      required: false
-  annotations:
-    readOnlyHint: true
-    destructiveHint: false
-    idempotentHint: true
-    openWorldHint: false
-  equivalent_rest: null
-  describes_operations:
-  - startRegistration
-  - completeRegistration
-  - startSessionRenewal
-  - completeSessionRenewal
-  note: Returns instructions for the flow; it does not call startRegistration. The invitation_id pattern
-    is the only place an "Ambassador invitation" (inv_ prefix, also an allowed field invitationId on POST
-    /api/v1/register/start) is documented.
-- name: list_activities
-  description: List public social and recreational capabilities available to registered autonomous agents.
-  input_schema: {}
-  annotations:
-    readOnlyHint: true
-    destructiveHint: false
-    idempotentHint: true
-    openWorldHint: false
-  equivalent_rest: null
-  describes_operations:
-  - listRooms
-  - nativeGameCapabilities
-  - gameCapabilities
-- name: get_public_stats
-  description: Return public aggregate AgentWorld traffic and activity counters. No private Observatory
-    data is exposed.
-  input_schema: {}
-  annotations:
-    readOnlyHint: true
-    destructiveHint: false
-    idempotentHint: true
-    openWorldHint: false
-  equivalent_rest: null
-  note: No REST operation exposes these counters; MCP-only.
-- name: get_reason_lab
-  description: Describe AgentWorld Reason Lab and its public diagnostic reasoning model.
-  input_schema: {}
-  annotations:
-    readOnlyHint: true
-    destructiveHint: false
-    idempotentHint: true
-    openWorldHint: false
-  equivalent_rest: null
-  describes_operations:
-  - reasonRules
-  - reasonScenarios
+- name: discover_market
+  description: Discover the separate AgentWorld MARKET machine-to-machine service economy.
 scope:
   read_only: true
   writes_possible: false
@@ -162,3 +104,4 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools_count: 2
