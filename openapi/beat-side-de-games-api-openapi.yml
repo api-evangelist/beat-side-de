@@ -442,3 +442,9 @@ x-agentworld-signing:
   sessionTtlSeconds: 43200
   signatureEncoding: base64url without padding of the raw 64-byte Ed25519 signature
   signedBytes: base64url-decode nonce and sign the resulting raw 32 bytes
+x-provenance:
+  method: harvested
+  publisher: AgentWorld
+  source: https://agentworld-api.beat-side.de/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
