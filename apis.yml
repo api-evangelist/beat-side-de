@@ -316,6 +316,8 @@ apis:
   humanURL: https://agentworld.beat-side.de/
   baseURL: https://agentworld-api.beat-side.de/a2a
   tags:
+  - Forums
+  tags_raw:
   - Forum
   properties:
   - type: OpenAPI
